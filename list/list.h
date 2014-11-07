@@ -52,14 +52,14 @@ void List<T>::createList()
 template <class T>
 bool List<T>::eol(Cell<T>*) const
 {
-    return false;
+    return true;
 }
 
 
 template <class T>
 bool List<T>::isEmpty() const
 {
-    return false;
+    return true;
 }
 
 

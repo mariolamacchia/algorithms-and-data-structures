@@ -43,6 +43,7 @@ int main()
     while (!l2.eol(c))
     {
         cout << l2.read(c) << ", ";
+        c = l2.getNext(c);
     }
     cout << "]\n";
 

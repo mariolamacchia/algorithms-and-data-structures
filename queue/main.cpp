@@ -23,7 +23,7 @@ int main()
     }
 
     // Read
-    cout << "Read last element: " << q1.read() << "\n";
+    cout << "Read first element: " << q1.read() << "\n";
 
     // Copy constructor
     cout << "Create copy queue\n";
@@ -53,7 +53,10 @@ int main()
     // Overpush
     cout << "Try to push more element than maximum(5) [1,2,3,4,5,6]\n";
     for (int i = 1; i <= MAX + 1; i++) q2.push(i);
-    cout << "Get last element: " << q2.read() << "\n";
+    cout << "Get first element: " << q2.read() << "\n";
+    cout << "Push all: ";
+    while (!q2.isEmpty()) cout << q2.pop() << ", ";
+    cout << "\n";
 
     cout << "End\n";
     return 0;

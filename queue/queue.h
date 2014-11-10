@@ -18,44 +18,73 @@ class Queue
 
         T queue[MAX];
         int length;
+        int head;
         T ERROR_VALUE;
 };
 
 template <class T, int MAX>
 Queue<T, MAX>::Queue()
 {
+    create();
 }
 
 template <class T, int MAX>
 Queue<T, MAX>::Queue(Queue<T, MAX> & q)
 {
+    T v;
+    Queue<T, MAX> qt;
+    create();
+
+    while (!q.isEmpty())
+    {
+        qt.push(q.pop());
+    }
+
+    while (!qt.isEmpty())
+    {
+        v = qt.pop();
+        q.push(v);
+        push(v);
+    }
 }
 
 template <class T, int MAX>
 void Queue<T, MAX>::create()
 {
+    head = 0;
+    length = 0;
 }
 
 template <class T, int MAX>
 T Queue<T, MAX>::read() const
 {
+    if (!length) return ERROR_VALUE;
+    return queue[head];
 }
 
 template <class T, int MAX>
 T Queue<T, MAX>::pop()
 {
-    return 0;
+    T v;
+    if (!length) return ERROR_VALUE;
+    length--;
+    v = queue[head];
+    head = (head + 1) % MAX;
+    return v;
 }
 
 template <class T, int MAX>
 void Queue<T, MAX>::push(T v)
 {
+    if (length == MAX) return;
+    queue[(head + length) % MAX] = v;
+    length++;
 }
 
 template <class T, int MAX>
 bool Queue<T, MAX>::isEmpty() const
 {
-    return true;
+    return length == 0;
 }
 
 #endif

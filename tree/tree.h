@@ -10,7 +10,7 @@ class Tree
         Tree();
         ~Tree();
 
-        bool empty() const;
+        bool isEmpty() const;
         bool isLastChild(Node<T>*) const;
         bool isLeaf(Node<T>*) const;
 
@@ -42,7 +42,7 @@ Tree<T>::~Tree()
 }
 
 template <class T>
-bool Tree<T>::empty() const
+bool Tree<T>::isEmpty() const
 {
     return root == NULL;
 }
@@ -104,8 +104,14 @@ void Tree<T>::insert(Node<T>* np, Node<T>* ns, Tree<T>* t)
 template <class T>
 void Tree<T>::remove(Node<T>* n)
 {
+    // if n is root
+    if (n == getRoot())
+    {
+        delete n;
+        root = NULL;
+    }
     // if n is first child
-    if (n->getParent()->getChild() == n)
+    else if (n->getParent()->getChild() == n)
     {
         n->getParent()->setChild(n->getSibling());
         delete n;

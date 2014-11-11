@@ -84,5 +84,9 @@ int main()
     // in-order (1) print
     printInOrder(t1, 1);
 
+    cout << "Remove 1\n";
+    t1->remove(t1->getRoot());
+    cout << "Is empty? " << t1->isEmpty() << "\n";
+
     cout << "End\n";
 }

@@ -47,7 +47,7 @@ int main()
     printInOrder(t1);
 
     cout << "Remove 3\n";
-    t1->removeRightChild();
+    t1->removeRightChild(t1->getRoot());
 
     // print
     printPreOrder(t1);

@@ -25,50 +25,57 @@ class Node
 template <class T>
 Node<T>::Node()
 {
+    leftChild = NULL;
+    rightChild = NULL;
+    parent = NULL;
 }
 
 template <class T>
 Node<T>* Node<T>::getLeftChild() const
 {
-    return NULL;
+    return leftChild;
 }
 
 template <class T>
 Node<T>* Node<T>::getRightChild() const
 {
-    return NULL;
+    return rightChild;
 }
 
 template <class T>
 Node<T>* Node<T>::getParent() const
 {
-    return NULL;
+    return parent;
 }
 
 template <class T>
 T Node<T>::getValue() const
 {
-    return 0;
+    return value;
 }
 
 template <class T>
-void Node<T>::setLeftChild(Node<T>*)
+void Node<T>::setLeftChild(Node<T>* n)
 {
+    leftChild = n;
 }
 
 template <class T>
-void Node<T>::setRightChild(Node<T>*)
+void Node<T>::setRightChild(Node<T>* n)
 {
+    rightChild = n;
 }
 
 template <class T>
-void Node<T>::setParent(Node<T>*)
+void Node<T>::setParent(Node<T>* n)
 {
+    parent = n;
 }
 
 template <class T>
-void Node<T>::setValue(T)
+void Node<T>::setValue(T v)
 {
+    value = v;
 }
 
 #endif

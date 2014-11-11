@@ -12,111 +12,126 @@ class BinaryTree
         ~BinaryTree();
 
         Node<T>* getRoot() const;
-        Node<T>* getLeftChild() const;
-        Node<T>* getRightChild() const;
+        Node<T>* getLeftChild(Node<T>*) const;
+        Node<T>* getRightChild(Node<T>*) const;
 
         bool isEmpty() const;
         bool hasLeftChild(Node<T>*) const;
         bool hasRightChild(Node<T>*) const;
         bool isLeaf(Node<T>*) const;
 
-        void insertLeft(BinaryTree<T>*);
-        void insertRight(BinaryTree<T>*);
+        void insertLeft(Node<T>* ,BinaryTree<T>*);
+        void insertRight(Node<T>*, BinaryTree<T>*);
         void setRoot(T);
 
-        void removeRightChild();
-        void removeLeftChild();
+        void removeRightChild(Node<T>*);
+        void removeLeftChild(Node<T>*);
+
     private:
-        void create();
         Node<T>* root;
 };
 
 template <class T>
 BinaryTree<T>::BinaryTree()
 {
+    root = NULL;
 }
 
 template <class T>
 BinaryTree<T>::BinaryTree(BinaryTree<T>* left, BinaryTree<T>* right)
 {
+    root = new Node<T>;
+    root->setLeftChild(left->getRoot());
+    root->setRightChild(right->getRoot());
 }
 
 template <class T>
 BinaryTree<T>::~BinaryTree()
 {
+    delete root;
 }
 
 template <class T>
 Node<T>* BinaryTree<T>::getRoot() const
 {
-    return NULL;
+    return root;
 }
 
 template <class T>
-Node<T>* BinaryTree<T>::getLeftChild() const
+Node<T>* BinaryTree<T>::getLeftChild(Node<T>*n) const
 {
-    return NULL;
+    return n->getLeftChild();
 }
 
 template <class T>
-Node<T>* BinaryTree<T>::getRightChild() const
+Node<T>* BinaryTree<T>::getRightChild(Node<T>*n) const
 {
-    return NULL;
+    return n->getRightChild();
 }
 
 template <class T>
 bool BinaryTree<T>::isEmpty() const
 {
-    return true;
+    return root == NULL;
 }
 
 template <class T>
 bool BinaryTree<T>::hasLeftChild(Node<T>* n) const
 {
-    return true;
+    return n->getLeftChild() != NULL;
 }
 
 template <class T>
 bool BinaryTree<T>::hasRightChild(Node<T>* n) const
 {
-    return true;
+    return n->getRightChild() != NULL;
 }
 
 template <class T>
 bool BinaryTree<T>::isLeaf(Node<T>* n) const
 {
-    return true;
+    return (!(hasLeftChild(n) || hasRightChild(n)));
 }
 
 template <class T>
-void BinaryTree<T>::insertLeft(BinaryTree<T>* t)
+void BinaryTree<T>::insertLeft(Node<T>* n, BinaryTree<T>* t)
 {
+    n->setLeftChild(t->getRoot());
+    t->getRoot()->setParent(n);
 }
 
 template <class T>
-void BinaryTree<T>::insertRight(BinaryTree<T>* t)
+void BinaryTree<T>::insertRight(Node<T>* n, BinaryTree<T>* t)
 {
+    n->setRightChild(t->getRoot());
+    t->getRoot()->setParent(n);
 }
 
 template <class T>
-void BinaryTree<T>::setRoot(T)
+void BinaryTree<T>::setRoot(T v)
 {
+    if (root == NULL) root = new Node<T>;
+    root->setValue(v);
 }
 
 template <class T>
-void BinaryTree<T>::create()
+void BinaryTree<T>::removeLeftChild(Node<T>* n)
 {
+    if (hasLeftChild(n))
+    {
+        delete getLeftChild(n);
+        n->setLeftChild(NULL);
+    }
 }
 
 template <class T>
-void BinaryTree<T>::removeRightChild()
+void BinaryTree<T>::removeRightChild(Node<T>* n)
 {
+    if (hasRightChild(n))
+    {
+        delete getRightChild(n);
+        n->setRightChild(NULL);
+    }
 }
-
-template <class T>
-void BinaryTree<T>::removeLeftChild()
-{
-}
-
 
 #endif

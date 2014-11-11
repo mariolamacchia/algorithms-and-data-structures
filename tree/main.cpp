@@ -67,16 +67,22 @@ int main()
     n = t1->getSibling(n);
     t1->insert(n, n, t2);                
 
+    // pre-order print
     printPreOrder(t1);
+    // post-order print
     printPostOrder(t1);
-    printInOrder(t1);
+    // in-order (2) print
+    printInOrder(t1, 2);
 
     // Remove 3
     t1->remove(t1->getSibling(t1->getChild(t1->getRoot())));
 
+    // pre-order print
     printPreOrder(t1);
+    // post-order print
     printPostOrder(t1);
-    printInOrder(t1);
+    // in-order (1) print
+    printInOrder(t1, 1);
 
     cout << "End\n";
 }

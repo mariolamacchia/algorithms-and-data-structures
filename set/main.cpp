@@ -17,7 +17,7 @@ void print(Set<int>* s)
 int main()
 {
     cout << "Create empty set: ";
-    Set<int>* s1;
+    Set<int>* s1 = new Set<int>;
     cout << s1->isEmpty() <<"\n";
 
     cout << "Insert 1,2,3,4\n";
@@ -35,9 +35,11 @@ int main()
 
     cout << "Print set: ";
     print(s1);
+    cout << "\n";
     
     cout << "Create sets [3,4,5,6], [11, 12,13]\n";
-    Set<int> * s2, * s3;
+    Set<int> * s2 = new Set<int>,
+             * s3 = new Set<int>;
     for (int i = 3; i <= 6; i++) s2->insert(i);
     for (int i = 11; i <= 13; i++) s3->insert(i);
 

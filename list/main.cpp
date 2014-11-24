@@ -1,10 +1,14 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "list.h"
+#include "sorting.h"
 
 using namespace std;
 
 int main()
 {
+    srand(time(0));
     Cell<int>* c;
 
     // Test constructor
@@ -55,6 +59,54 @@ int main()
     }
 
     cout << "Is copied list empty? " << l2.isEmpty() << "\n";
+
+    // Merge sort
+    List<int>* l;
+    l = new List<int>;
+    c = l->getFirst();
+    for (int i = 0; i < 10; i++) l->insert(c, i);
+    cout << "Merge [1..10]: ";
+    l = mergeSort(l);
+    c = l->getFirst();
+    while (!l->eol(c))
+    {
+        cout << l->read(c) << ", ";
+        c = l->getNext(c);
+    }
+    cout << "\n";
+
+    l = new List<int>;
+    c = l->getFirst();
+    for (int i = 10; i > 0; i--) l->insert(c, i);
+    cout << "Merge [1..10]: ";
+    l = mergeSort(l);
+    c = l->getFirst();
+    while (!l->eol(c))
+    {
+        cout << l->read(c) << ", ";
+        c = l->getNext(c);
+    }
+    cout << "\n";
+
+    l = new List<int>;
+    c = l->getFirst();
+    for (int i = 10; i > 0; i--) l->insert(c, rand() % 10);
+    cout << "Merge [";
+    c = l->getFirst();
+    while (!l->eol(c))
+    {
+        cout << l->read(c) << ", ";
+        c = l->getNext(c);
+    }
+    cout << "]: ";
+    l = mergeSort(l);
+    c = l->getFirst();
+    while (!l->eol(c))
+    {
+        cout << l->read(c) << ", ";
+        c = l->getNext(c);
+    }
+    cout << "\n";
 
     cout << "End";
     return 0;

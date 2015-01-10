@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "list.h"
-#include "sorting.h"
+#include "algorithms.h"
 
 using namespace std;
 
@@ -96,24 +96,60 @@ int main()
         c = l->getFirst();
         l->insert(c, i);
     }
-    cout << "Merge ordered list [1..10]:";
+    cout << "Merge sort on ordered list [1..10]:";
     startTest("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]");
     l = mergeSort(l);
     printIntList(l);
     endTest();
 
-    cout << "Merge random list ";
+    cout << "Merge sort on a random list ";
     l = new List<int>;
     for (int i = 10; i > 0; i--)
     {
         c = l->getFirst();
-        int v = rand() % 10;
-        l->insert(c, v);
+        l->insert(c, rand() % 10);
     }
     printIntList(l);
     startTest("ordered");
     l = mergeSort(l);
     printIntList(l);
+    endTest();
+
+    // Search tests
+    l = new List<int>;
+    for (int i = 9; i > 0; i-=2)
+    {
+        c = l->getFirst();
+        l->insert(c, i);
+    }
+    cout << "Search 3 and 4 into list [1, 3, 5, 7, 9]:";
+    startTest("1, -6");
+    cout << search(l, 3) << ", " << search(l, 4);
+    endTest();
+    cout << "Ordered search 3 and 4 into list [1, 3, 5, 7, 9]:";
+    startTest("1, -3");
+    cout << searchOrdered(l, 3) << ", " << searchOrdered(l, 4);
+    endTest();
+    l = new List<int>;
+    int value;
+    for (int i = 10; i > 0; i--)
+    {
+        c = l->getFirst();
+        int v = rand() % 10;
+        if (i == 5) value = v;
+        l->insert(c, v);
+    }
+    cout << "Search " << value << " and -1 into random list ";
+    printIntList(l);
+    cout << ":";
+    startTest("?, -11");
+    cout << search(l, value) << ", " << search(l, -1);
+    endTest();
+    cout << "Ordered search " << value << " and -1 into random list ";
+    printIntList(l);
+    cout << ":";
+    startTest("?, -1");
+    cout << searchOrdered(l, value) << ", " << searchOrdered(l, -1);
     endTest();
 
     cout << "End";

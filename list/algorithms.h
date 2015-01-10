@@ -1,6 +1,44 @@
 #include "list.h"
 
 template <class T>
+int searchOrdered(List<T>* l, T value)
+{
+    /*
+       If found, return the position of value,
+       else return a negative number indicating
+       the number of attempts done
+    */
+    int ret = 1;
+    typename List<T>::cell c = l->getFirst();
+    while (!l->eol(c) && l->read(c) <= value)
+    {
+        if (value == l->read(c)) return ret - 1;
+        c = l->getNext(c);
+        ret++;
+    }
+    return ret * -1;
+}
+
+template <class T>
+int search(List<T>* l, T value)
+{
+    /*
+       If found, return the position of value,
+       else return a negative number indicating
+       the number of attempts done
+    */
+    int ret = 1;
+    typename List<T>::cell c = l->getFirst();
+    while (!l->eol(c))
+    {
+        if (value == l->read(c)) return ret - 1;
+        c = l->getNext(c);
+        ret++;
+    }
+    return ret * -1;
+}
+
+template <class T>
 List<T>* mergeSort(List<T>* l)
 {
     if (!isSorted(l))
@@ -8,7 +46,7 @@ List<T>* mergeSort(List<T>* l)
         List<T> * l1 = new List<T>,
                 * l2 = new List<T>;
         split(l, l1, l2);
-        l = merge(mergeSort(l1), mergeSort(l2));
+        l = mergeOrderedLists(mergeSort(l1), mergeSort(l2));
     }
     return l;
 }
@@ -49,7 +87,7 @@ void split(List<T>* in, List<T>* out1, List<T>* out2)
 }
 
 template <class T>
-List<T>* merge(List<T>* l1, List<T>* l2)
+List<T>* mergeOrderedLists(List<T>* l1, List<T>* l2)
 {
     List<T> * l = new List<T>;
     typename List<T>::cell c = l->getFirst(),

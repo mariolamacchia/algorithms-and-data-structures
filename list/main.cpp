@@ -9,13 +9,13 @@ using namespace std;
 void printIntList(List<int> *l)
 {
     typename List<int>::cell c = l->getFirst();
-    cout << "\033[1;31m[";
+    cout << "[";
     while (!l->eol(c))
     {
         cout << l->read(c) << ", ";
         c = l->getNext(c);
     }
-    cout << "]\033[0m";
+    cout << "]";
 }
 
 void startTest(string it)
@@ -44,22 +44,25 @@ int main()
     endTest();
 
     // Test insert
-    cout << "\nFill with [1, 2, 3, 4, 5]";
+    cout << "Fill with [1, 2, 3, 4, 5]";
     startTest("[1, 2, 3, 4, 5,]");
-    c = l1.getFirst();
-    for (int i = 0; i < 5; i++) l1.insert(c, i+1);
+    for (int i = 5; i > 0; i--)
+    {
+        c = l1.getFirst();
+        l1.insert(c, i);
+    }
     printIntList(&l1);
     endTest();
 
     // Test getNext and read
-    cout << "\nGet second element:";
+    cout << "Get second element:";
     startTest("2");
     c = l1.getNext(l1.getFirst());
     cout << l1.read(c);
     endTest();
 
     // Test getPrevious and write
-    cout << "\nGet first element and replace with 10:";
+    cout << "Get first element and replace with 10:";
     c = l1.getPrevious(c);
     startTest("1 > 10");
     cout << l1.read(c) << " > ";
@@ -81,15 +84,18 @@ int main()
         l1.remove(l1.getFirst());
     }
     cout << "Is copied list empty?";
-    startTest("1");
+    startTest("0");
     cout << l2.isEmpty();
     endTest();
 
     // Merge sort
     List<int>* l;
     l = new List<int>;
-    c = l->getFirst();
-    for (int i = 0; i < 10; i++) l->insert(c, i);
+    for (int i = 10; i > 0; i--)
+    {
+        c = l->getFirst();
+        l->insert(c, i);
+    }
     cout << "Merge ordered list [1..10]:";
     startTest("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]");
     l = mergeSort(l);
@@ -98,8 +104,12 @@ int main()
 
     cout << "Merge random list ";
     l = new List<int>;
-    c = l->getFirst();
-    for (int i = 10; i > 0; i--) l->insert(c, rand() % 10);
+    for (int i = 10; i > 0; i--)
+    {
+        c = l->getFirst();
+        int v = rand() % 10;
+        l->insert(c, v);
+    }
     printIntList(l);
     startTest("ordered");
     l = mergeSort(l);

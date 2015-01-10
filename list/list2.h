@@ -50,6 +50,7 @@ List<T>::List(const List & l)
     {
         insert(c2, l.read(c1));
         c1 = l.getNext(c1);
+        c2 = l.getNext(c2);
     }
 }
 

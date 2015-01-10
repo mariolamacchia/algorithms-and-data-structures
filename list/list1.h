@@ -1,6 +1,7 @@
 #ifndef _LIST_H
 #define _LIST_H
 
+#include <climits>
 #include "cell.h"
 
 
@@ -70,6 +71,7 @@ void List<T>::createList()
     pivot = new Cell<T>;
     pivot->setNext(pivot);
     pivot->setPrevious(pivot);
+    pivot->setValue(INT_MAX);
 }
 
 

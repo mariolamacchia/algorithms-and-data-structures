@@ -3,10 +3,13 @@
 
 #include "cell.h"
 
+
 template <class T>
 class List
 {
     public:
+        typedef Cell<T>* cell;
+
         List();
         List(const List&);
         ~List();

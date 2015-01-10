@@ -16,7 +16,7 @@ List<T>* mergeSort(List<T>* l)
 template <class T>
 bool isSorted(List<T>* l)
 {
-    Cell<T>* c = l->getFirst();
+    typename List<T>::cell c = l->getFirst();
     T min = l->read(c);
     while (!l->eol(c))
     {
@@ -29,9 +29,9 @@ bool isSorted(List<T>* l)
 template <class T>
 void split(List<T>* in, List<T>* out1, List<T>* out2)
 {
-    Cell<T> * c = in->getFirst(),
-            * c1 = out1->getFirst(),
-            * c2 = out2->getFirst();
+    typename List<T>::cell c = in->getFirst(),
+            c1 = out1->getFirst(),
+            c2 = out2->getFirst();
 
     while (!in->eol(c))
     {
@@ -52,9 +52,9 @@ template <class T>
 List<T>* merge(List<T>* l1, List<T>* l2)
 {
     List<T> * l = new List<T>;
-    Cell<T> * c = l->getFirst(),
-            * c1 = l1->getFirst(),
-            * c2 = l2->getFirst();
+    typename List<T>::cell c = l->getFirst(),
+            c1 = l1->getFirst(),
+            c2 = l2->getFirst();
 
     while (!(l1->eol(c1) && l2->eol(c2)))
     {

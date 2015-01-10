@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     srand(time(0));
-    Cell<int>* c;
+    typename List<int>::cell c;
 
     // Test constructor
     cout << "Create empty list\n";

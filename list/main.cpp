@@ -6,6 +6,18 @@
 
 using namespace std;
 
+void printIntList(List<int>* l)
+{
+    cell c = l->getFirst();
+    cout << "["
+    while (!l->isEol(c))
+    {
+        cout << l->read(c) << ", ";
+        c = l->getNext(c);
+    }
+    cout << "]";
+}
+
 int main()
 {
     srand(time(0));

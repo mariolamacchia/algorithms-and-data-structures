@@ -1,5 +1,6 @@
 #include <iostream>
 #include "stack.h"
+#include "algorithms.h"
 
 using namespace std;
 
@@ -54,6 +55,12 @@ int main()
     cout << "Try to push more element than maximum(5) [1,2,3,4,5,6]\n";
     for (int i = 1; i <= MAX + 1; i++) s2.push(i);
     cout << "Get last element: " << s2.read() << "\n";
+
+    // Palindrome
+    cout << "Is acbca palindrome? " << isPalindrome("acbca") << "\n";
+    cout << "Is acbbca palindrome? " << isPalindrome("acbbca") << "\n";
+    cout << "Is acbde palindrome? " << isPalindrome("acbde") << "\n";
+
 
     cout << "End\n";
     return 0;

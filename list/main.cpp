@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "../tests.h"
 #include "list.h"
 #include "algorithms.h"
 
@@ -16,16 +17,6 @@ void printIntList(List<int> *l)
         c = l->getNext(c);
     }
     cout << "]";
-}
-
-void startTest(string it)
-{
-    cout << "\n(it should be \"" << it << "\"): \033[1;31m";
-}
-
-void endTest()
-{
-    cout << "\033[0m\n\n";
 }
 
 int main()

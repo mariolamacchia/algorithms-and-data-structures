@@ -7,6 +7,7 @@ template <class T>
 class BinaryTree
 {
     public:
+        typedef Node<T>* node;
         BinaryTree();
         BinaryTree(BinaryTree<T>* left, BinaryTree<T>* right);
         ~BinaryTree();
@@ -26,6 +27,9 @@ class BinaryTree
 
         void removeRightChild(Node<T>*);
         void removeLeftChild(Node<T>*);
+
+        T read(Node<T>*) const;
+        void write(Node<T>*, T);
 
     private:
         Node<T>* root;
@@ -132,6 +136,18 @@ void BinaryTree<T>::removeRightChild(Node<T>* n)
         delete getRightChild(n);
         n->setRightChild(NULL);
     }
+}
+
+template <class T>
+T BinaryTree<T>::read(Node<T>* n) const
+{
+    return n->getValue();
+}
+
+template <class T>
+void BinaryTree<T>::write(Node<T>* n, T value)
+{
+    n->setValue(value);
 }
 
 #endif

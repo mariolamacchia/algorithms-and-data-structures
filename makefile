@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall
+CFLAGS = -Wall -g
 FILES = tests.cpp
 
 all: list1 list2 queue1 stack1 stack2 bintree1 bintree2

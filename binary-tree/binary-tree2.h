@@ -1,14 +1,14 @@
 #ifndef _BINTREE_H
 #define _BINTREE_H
 
-#define MAX_LENGTH 100
-
+#include <climits>
 #include "node.h"
 
 template <class T>
 class BinaryTree
 {
     public:
+        typedef int node;
         BinaryTree();
         BinaryTree(BinaryTree<T>* left, BinaryTree<T>* right);
         ~BinaryTree();
@@ -29,23 +29,32 @@ class BinaryTree
         void removeRightChild(int);
         void removeLeftChild(int);
 
+        T read(int) const;
+        void write(int, T);
+
     private:
+        void copySubtree(BinaryTree<T>* source, int sourceNode, int destNode);
         int* values;
+        static const int maxLength = 100;
+        static const int empty = INT_MAX - 1;
+        static const int undefined = INT_MAX;
 };
 
 template <class T>
 BinaryTree<T>::BinaryTree()
 {
-    values = new int[MAX_LENGTH];
+    values = new int[maxLength];
+    for (int i = 0; i < maxLength; i++) values[i] = undefined;
 }
 
 template <class T>
 BinaryTree<T>::BinaryTree(BinaryTree<T>* left, BinaryTree<T>* right)
 {
-    values = new int[MAX_LENGTH];
-    root = new Node<T>;
-    root->setLeftChild(left->getRoot());
-    root->setRightChild(right->getRoot());
+    values = new int[maxLength];
+    for (int i = 1; i < maxLength; i++) values[i] = undefined;
+    setRoot(empty);
+    copySubtree(left, left->getRoot(), getLeftChild(getRoot()));
+    copySubtree(right, right->getRoot(), getRightChild(getRoot()));
 }
 
 template <class T>
@@ -55,39 +64,55 @@ BinaryTree<T>::~BinaryTree()
 }
 
 template <class T>
+void BinaryTree<T>::copySubtree(BinaryTree<T>* source, int sourceNode, int destNode)
+{
+    write(destNode, source->read(sourceNode));
+    if (source->hasLeftChild(sourceNode))
+    {
+        copySubtree(source, source->getLeftChild(sourceNode),
+                    getLeftChild(destNode));
+    }
+    if (source->hasRightChild(sourceNode))
+    {
+        copySubtree(source, source->getRightChild(sourceNode),
+                    getRightChild(destNode));
+    }
+}
+
+template <class T>
 int BinaryTree<T>::getRoot() const
 {
     return 0;
 }
 
 template <class T>
-int BinaryTree<T>::getLeftChild(intn) const
+int BinaryTree<T>::getLeftChild(int n) const
 {
-    return n->getLeftChild();
+    return 2 * n + 1;
 }
 
 template <class T>
-int BinaryTree<T>::getRightChild(intn) const
+int BinaryTree<T>::getRightChild(int n) const
 {
-    return n->getRightChild();
+    return 2 * n + 2;
 }
 
 template <class T>
 bool BinaryTree<T>::isEmpty() const
 {
-    return root == NULL;
+    return read(getRoot()) == undefined;
 }
 
 template <class T>
 bool BinaryTree<T>::hasLeftChild(int n) const
 {
-    return n->getLeftChild() != NULL;
+    return values[getLeftChild(n)] != undefined;
 }
 
 template <class T>
 bool BinaryTree<T>::hasRightChild(int n) const
 {
-    return n->getRightChild() != NULL;
+    return values[getRightChild(n)] != undefined;
 }
 
 template <class T>
@@ -99,42 +124,43 @@ bool BinaryTree<T>::isLeaf(int n) const
 template <class T>
 void BinaryTree<T>::insertLeft(int n, BinaryTree<T>* t)
 {
-    n->setLeftChild(t->getRoot());
-    t->getRoot()->setParent(n);
+    copySubTree(t, t->getRoot(), getLeftChild(n));
 }
 
 template <class T>
 void BinaryTree<T>::insertRight(int n, BinaryTree<T>* t)
 {
-    n->setRightChild(t->getRoot());
-    t->getRoot()->setParent(n);
+    copySubTree(t, t->getRoot(), getRightChild(n));
 }
 
 template <class T>
 void BinaryTree<T>::setRoot(T v)
 {
-    if (root == NULL) root = new Node<T>;
-    root->setValue(v);
+    values[0] = v;
 }
 
 template <class T>
 void BinaryTree<T>::removeLeftChild(int n)
 {
-    if (hasLeftChild(n))
-    {
-        delete getLeftChild(n);
-        n->setLeftChild(NULL);
-    }
+    values[getLeftChild(n)] = undefined;
 }
 
 template <class T>
 void BinaryTree<T>::removeRightChild(int n)
 {
-    if (hasRightChild(n))
-    {
-        delete getRightChild(n);
-        n->setRightChild(NULL);
-    }
+    values[getRightChild(n)] = undefined;
+}
+
+template <class T>
+T BinaryTree<T>::read(int i) const
+{
+    return values[i];
+}
+
+template <class T>
+void BinaryTree<T>::write(int i, T value)
+{
+    values[i] = value;
 }
 
 #endif

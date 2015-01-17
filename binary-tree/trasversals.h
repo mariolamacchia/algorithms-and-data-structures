@@ -31,26 +31,26 @@ void printInOrder(BinaryTree<T>* t)
 }
 
 template <class T>
-void _printPostOrder(BinaryTree<T>* t, Node<T>* n)
+void _printPostOrder(BinaryTree<T>* t, typename BinaryTree<T>::node n)
 {
-    cout << n->getValue() << ", ";    
+    cout << t->read(n) << ", ";    
     if (t->hasLeftChild(n)) _printPostOrder(t, t->getLeftChild(n));
     if (t->hasRightChild(n)) _printPostOrder(t, t->getRightChild(n));
 }
 
 template <class T>
-void _printPreOrder(BinaryTree<T>* t, Node<T>* n)
+void _printPreOrder(BinaryTree<T>* t, typename BinaryTree<T>::node n)
 {
     if (t->hasLeftChild(n)) _printPreOrder(t, t->getLeftChild(n));
     if (t->hasRightChild(n)) _printPreOrder(t, t->getRightChild(n));
-    cout << n->getValue() << ", ";    
+    cout << t->read(n) << ", ";    
 }
 
 template <class T>
-void _printInOrder(BinaryTree<T>* t, Node<T>* n)
+void _printInOrder(BinaryTree<T>* t, typename BinaryTree<T>::node n)
 {
     if (t->hasLeftChild(n)) _printInOrder(t, t->getLeftChild(n));
-    cout << n->getValue() << ", ";    
+    cout << t->read(n) << ", ";    
     if (t->hasRightChild(n)) _printInOrder(t, t->getRightChild(n));
 }
 

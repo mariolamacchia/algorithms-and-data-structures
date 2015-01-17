@@ -57,3 +57,4 @@ set2:
 
 clean:
 	rm *.bin
+	rm -rf *.dSYM

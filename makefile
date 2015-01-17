@@ -51,5 +51,9 @@ set1:
 	$(CC) $(CFLAGS) -o set1.bin $(FILES) set/main.cpp
 	rm list/list.h
 
+set2:
+	$(CC) $(CFLAGS) -o set2.bin $(FILES) set-array/main.cpp \
+	    set-array/set.cpp set-array/operations.cpp
+
 clean:
 	rm *.bin

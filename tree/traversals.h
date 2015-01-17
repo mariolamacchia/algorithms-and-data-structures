@@ -31,13 +31,13 @@ void printPostOrder(Tree<T>* t)
 }
 
 template <class T>
-void _printInOrder(Tree<T>* t, Node<T>* n, int in)
+void _printInOrder(Tree<T>* t, typename Tree<T>::node n, int in)
 {
-    if (t->isLeaf(n)) cout << n->getValue() << ", ";
+    if (t->isLeaf(n)) cout << t->read(n) << ", ";
     else
     {
         int i = 0;
-        Node<T>* c = t->getChild(n);
+        typename Tree<T>::node c = t->getChild(n);
         while (!t->isLastChild(c) && i != in)
         {
             _printInOrder(t, c, in);
@@ -46,7 +46,7 @@ void _printInOrder(Tree<T>* t, Node<T>* n, int in)
         }
         // if i < in c is last child and it must be printed
         if (i < in) _printInOrder(t, c, in);
-        cout << n->getValue() << ", ";
+        cout << t->read(n) << ", ";
         // if i < in means that children are finished
         if (i == in)
         {
@@ -61,29 +61,29 @@ void _printInOrder(Tree<T>* t, Node<T>* n, int in)
 }
 
 template <class T>
-void _printPreOrder(Tree<T>* t, Node<T>* n)
+void _printPreOrder(Tree<T>* t, typename Tree<T>::node n)
 {
-    if (t->isLeaf(n)) cout << n->getValue() << ", ";
+    if (t->isLeaf(n)) cout << t->read(n) << ", ";
     else
     {
-        Node<T>* c = t->getChild(n);
+        typename Tree<T>::node c = t->getChild(n);
         while (!t->isLastChild(c))
         {
             _printPreOrder(t, c);
             c = t->getSibling(c);
         }
         _printPreOrder(t, c);
-        cout << n->getValue() << ", ";
+        cout << t->read(n) << ", ";
     }
 }
 
 template <class T>
-void _printPostOrder(Tree<T>* t, Node<T>* n)
+void _printPostOrder(Tree<T>* t, typename Tree<T>::node n)
 {
-    cout << n->getValue() << ", ";
+    cout << t->read(n) << ", ";
     if (!t->isLeaf(n))
     {
-        Node<T>* c = t->getChild(n);
+        typename Tree<T>::node c = t->getChild(n);
         while (!t->isLastChild(c))
         {
             _printPostOrder(t, c);

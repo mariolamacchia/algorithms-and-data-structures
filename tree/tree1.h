@@ -7,6 +7,7 @@ template <class T>
 class Tree
 {
     public:
+        typedef Node<T>* node;
         Tree();
         ~Tree();
 
@@ -23,7 +24,8 @@ class Tree
         void remove(Node<T>*);
         void setRoot(T);
         
-
+        T read(Node<T>*) const;
+        void write(Node<T>*, T);
     private:
         void create();
         Node<T>* root;
@@ -136,6 +138,18 @@ template <class T>
 void Tree<T>::create()
 {
     root = NULL;
+}
+
+template <class T>
+T Tree<T>::read(Node<T>* n) const
+{
+    return n->getValue();
+}
+
+template <class T>
+void Tree<T>::write(Node<T>* n, T v)
+{
+    n->setValue(v);
 }
 
 #endif

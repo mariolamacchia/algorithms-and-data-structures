@@ -1,13 +1,14 @@
 #include <iostream>
 #include "tree.h"
 #include "traversals.h"
+#include "../tests.h"
 
 using namespace std;
 
 int main()
 {
     Tree<int> *t1, *t2;
-    Node<int> *n;
+    typename Tree<int>::node n;
 
     cout << "    1\n";
     cout << "   / \\\n";
@@ -67,26 +68,45 @@ int main()
     n = t1->getSibling(n);
     t1->insert(n, n, t2);                
 
-    // pre-order print
+    cout << "Pre-order";
+    startTest("[4, 5, 2, 6, 9, 7, 8, 3, 1, ]");
     printPreOrder(t1);
-    // post-order print
-    printPostOrder(t1);
-    // in-order (2) print
-    printInOrder(t1, 2);
+    endTest();
 
-    // Remove 3
+    cout << "Post-order";
+    startTest("[1, 2, 4, 5, 3, 6, 7, 9, 8, ]");
+    printPostOrder(t1);
+    endTest();
+
+    cout << "In-order (2)";
+    startTest("[4, 5, 2, 6, 9, 7, 3, 8, 1, ]");
+    printInOrder(t1, 2);
+    endTest();
+
+    cout << "Remove 3\n";
     t1->remove(t1->getSibling(t1->getChild(t1->getRoot())));
 
-    // pre-order print
+    cout << "Pre-order";
+    startTest("[4, 5, 2, 1, ]");
     printPreOrder(t1);
-    // post-order print
+    endTest();
+
+    cout << "Post-order";
+    startTest("[1, 2, 4, 5, ]");
     printPostOrder(t1);
-    // in-order (1) print
+    endTest();
+
+    cout << "In-order (1)";
+    startTest("[4, 2, 5, 1, ]");
     printInOrder(t1, 1);
+    endTest();
 
     cout << "Remove 1\n";
     t1->remove(t1->getRoot());
-    cout << "Is empty? " << t1->isEmpty() << "\n";
+    cout << "Is empty? ";
+    startTest("1");
+    cout << t1->isEmpty();
+    endTest();
 
     cout << "End\n";
 }

@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall
 FILES = tests.cpp
 
-all: list1 list2 queue1 stack1 stack2
+all: list1 list2 queue1 stack1 stack2 bintree1 bintree2
 
 list2:
 	cp list/list2.h list/list.h
@@ -25,6 +25,16 @@ stack2:
 	cp stack/stack2.h stack/stack.h
 	$(CC) $(CFLAGS) -o stack2.bin $(FILES) stack/main.cpp stack/algorithms.cpp
 	rm stack/stack.h
+
+bintree1:
+	cp binary-tree/binary-tree1.h binary-tree/binary-tree.h
+	$(CC) $(CFLAGS) -o bintree1.bin $(FILES) binary-tree/main.cpp
+	rm binary-tree/binary-tree.h
+
+bintree2:
+	cp binary-tree/binary-tree2.h binary-tree/binary-tree.h
+	$(CC) $(CFLAGS) -o bintree2.bin $(FILES) binary-tree/main.cpp
+	rm binary-tree/binary-tree.h
 
 clean:
 	rm *.bin

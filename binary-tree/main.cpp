@@ -1,6 +1,7 @@
 #include <iostream>
 #include "binary-tree.h"
 #include "trasversals.h"
+#include "../tests.h"
 
 using namespace std;
 
@@ -10,7 +11,10 @@ int main()
 
     cout << "Create empty tree\n";
     t1 = new BinaryTree<int>;
-    cout << "Is tree empty? " << t1->isEmpty() << "\n";
+    cout << "Is tree empty? ";
+    startTest("1");
+    cout << t1->isEmpty();
+    endTest();
 
     cout << "       1\n";
     cout << "      / \\\n";
@@ -18,7 +22,7 @@ int main()
     cout << "    /|  / \\\n";
     cout << "   4 5 6   7\n";
     cout << "    / \\    \\\n";
-    cout << "   8   9    10\n";
+    cout << "   8   9    10\n\n\n";
 
     t2 = new BinaryTree<int>;
     t1->setRoot(8);
@@ -42,17 +46,35 @@ int main()
     t1->setRoot(1);
 
     // print
+    cout << "Pre-order";
+    startTest("[4, 8, 9, 5, 2, 6, 10, 7, 3, 1, ]");
     printPreOrder(t1);
+    endTest();
+    cout << "Post-order";
+    startTest("[1, 2, 4, 5, 8, 9, 3, 6, 7, 10, ]");
     printPostOrder(t1);
+    endTest();
+    cout << "In-order";
+    startTest("[4, 2, 8, 5, 9, 1, 6, 3, 7, 10, ]");
     printInOrder(t1);
+    endTest();
 
     cout << "Remove 3\n";
     t1->removeRightChild(t1->getRoot());
 
     // print
+    cout << "Pre-order";
+    startTest("[4, 8, 9, 5, 2, 1, ]");
     printPreOrder(t1);
+    endTest();
+    cout << "Post-order";
+    startTest("[1, 2, 4, 5, 8, 9, ]");
     printPostOrder(t1);
+    endTest();
+    cout << "In-order";
+    startTest("[4, 2, 8, 5, 9, 1, ]");
     printInOrder(t1);
+    endTest();
 
     cout << "End\n";
 }

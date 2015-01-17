@@ -46,5 +46,10 @@ tree1:
 	$(CC) $(CFLAGS) -o tree1.bin $(FILES) tree/main.cpp
 	rm tree/tree.h
 
+set1:
+	cp list/list1.h list/list.h
+	$(CC) $(CFLAGS) -o set1.bin $(FILES) set/main.cpp
+	rm list/list.h
+
 clean:
 	rm *.bin

@@ -7,7 +7,7 @@ template <class T>
 Set<T>* sum(Set<T>* s1, Set<T>* s2)
 {
     Set<T>* s = new Set<T>;
-    Node<T>* n = s1->getFirst();
+    typename Set<T>::cell n = s1->getFirst();
     while (!s1->isEndOfSet(n))
     {
         s->insert(s1->read(n));
@@ -26,7 +26,7 @@ template <class T>
 Set<T>* intersection(Set<T>* s1, Set<T>* s2)
 {
     Set<T>* s = new Set<T>;
-    Node<T> * n = s1->getFirst();
+    typename Set<T>::cell n = s1->getFirst();
     while (!s1->isEndOfSet(n))
     {
         if (s2->has(s1->read(n))) s->insert(s1->read(n));
@@ -39,7 +39,7 @@ template <class T>
 Set<T>* difference(Set<T>* s1, Set<T>* s2)
 {
     Set<T>* s = new Set<T>;
-    Node<T> * n = s1->getFirst();
+    typename Set<T>::cell n = s1->getFirst();
     while (!s1->isEndOfSet(n))
     {
         if (!s2->has(s1->read(n))) s->insert(s1->read(n));

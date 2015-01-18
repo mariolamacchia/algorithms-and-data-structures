@@ -16,6 +16,7 @@ class BinaryTree
         int getRoot() const;
         int getLeftChild(int) const;
         int getRightChild(int) const;
+        int getParent(int) const;
  
         bool isEmpty() const;
         bool hasLeftChild(int) const;
@@ -28,6 +29,7 @@ class BinaryTree
 
         void removeRightChild(int);
         void removeLeftChild(int);
+        void remove(int);
 
         T read(int) const;
         void write(int, T);
@@ -92,6 +94,12 @@ int BinaryTree<T>::getLeftChild(int n) const
 }
 
 template <class T>
+int BinaryTree<T>::getParent(int n) const
+{
+    return (n - 1)/2;
+}
+
+template <class T>
 int BinaryTree<T>::getRightChild(int n) const
 {
     return 2 * n + 2;
@@ -142,13 +150,21 @@ void BinaryTree<T>::setRoot(T v)
 template <class T>
 void BinaryTree<T>::removeLeftChild(int n)
 {
-    values[getLeftChild(n)] = undefined;
+    remove(getLeftChild(n));
 }
 
 template <class T>
 void BinaryTree<T>::removeRightChild(int n)
 {
-    values[getRightChild(n)] = undefined;
+    remove(getRightChild(n));
+}
+
+template <class T>
+void BinaryTree<T>::remove(int n)
+{
+    values[n] = undefined;
+    if (n*2+1 < maxLength) remove(n*2+1);
+    if (n*2+2 < maxLength) remove(n*2+2);
 }
 
 template <class T>

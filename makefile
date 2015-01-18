@@ -55,6 +55,11 @@ set2:
 	$(CC) $(CFLAGS) -o set2.bin $(FILES) set-array/main.cpp \
 	    set-array/set.cpp set-array/operations.cpp
 
+priority1:
+	cp priority-queue/priority-queue1.h priority-queue/priority-queue.h
+	$(CC) $(CFLAGS) -o priority1.bin $(FILES) priority-queue/main.cpp
+	rm priority-queue/priority-queue.h
+
 clean:
 	rm *.bin
 	rm -rf *.dSYM

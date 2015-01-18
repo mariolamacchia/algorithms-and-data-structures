@@ -56,7 +56,6 @@ List<T>::List(const List & l)
 template <class T>
 List<T>::~List()
 {
-    Cell<T>* c;
     while (!isEmpty())
     {
         remove(getFirst());

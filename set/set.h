@@ -7,14 +7,13 @@ template <class T>
 class Set : protected List<T>
 {
     public:
-        using List<int>::cell;
+        using typename List<T>::cell;
+        using List<T>::isEmpty;
+        using List<T>::getFirst;
+        using List<T>::getNext;
+        using List<T>::read;
 
-        using List<int>::isEmpty;
-        using List<int>::getFirst;
-        using List<int>::getNext;
-        using List<int>::read;
-
-        bool isEndOfSet(cell) const;
+        bool isEndOfSet(typename List<T>::cell) const;
         bool has(T) const;
 
         void insert(T);
@@ -22,7 +21,7 @@ class Set : protected List<T>
 };
 
 template <class T>
-bool Set<T>::isEndOfSet(cell c) const
+bool Set<T>::isEndOfSet(typename List<T>::cell c) const
 {
     return List<T>::eol(c);
 }
@@ -30,7 +29,7 @@ bool Set<T>::isEndOfSet(cell c) const
 template <class T>
 bool Set<T>::has(T v) const
 {
-    cell n = getFirst();
+    typename List<T>::cell n = getFirst();
     while (!List<T>::eol(n))
     {
         if (read(n) == v) return true;
@@ -44,7 +43,7 @@ template <class T>
 void Set<T>::insert(T v)
 {
     if (has(v)) return;
-    cell n = getFirst();
+    typename List<T>::cell n = getFirst();
     while (!(List<T>::eol(n) || read(n) > v))
     {
         n = getNext(n);
@@ -56,7 +55,7 @@ template <class T>
 void Set<T>::remove(T v)
 {
     if (!has(v)) return;
-    cell n = getFirst();
+    typename List<T>::cell n = getFirst();
     while (!(List<T>::eol(n) || read(n) >= v))
     {
         n = getNext(n);

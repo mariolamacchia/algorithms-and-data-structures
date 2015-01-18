@@ -60,6 +60,13 @@ priority1:
 	$(CC) $(CFLAGS) -o priority1.bin $(FILES) priority-queue/main.cpp
 	rm priority-queue/priority-queue.h
 
+priority2:
+	cp priority-queue/priority-queue2.h priority-queue/priority-queue.h
+	cp binary-tree/binary-tree1.h binary-tree/binary-tree.h
+	$(CC) $(CFLAGS) -o priority2.bin $(FILES) priority-queue/main.cpp
+	rm priority-queue/priority-queue.h
+	rm binary-tree/binary-tree.h
+
 clean:
 	rm *.bin
 	rm -rf *.dSYM

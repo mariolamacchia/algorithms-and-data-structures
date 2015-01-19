@@ -37,32 +37,43 @@ int main()
     endTest();
 
     cout << "Test collisions";
-    Dictionary<int, 4> d1;
-    d1.set("first", 16);
-    d1.set("first2", 15);
-    d1.set("a", 20);
-    d1.set("aaa", 21);
+    d.set("first", 15);
+    d.set("first1", 16);
+    d.set("first2", 17);
+    d.set("a", 20);
+    d.set("aa", 21);
+    d.set("aaa", 22);
+    d.set("aaaa", 23);
+    d.set("aaaaa", 24);
     startTest("all 1");
-    cout << (d1.get("first") == 16) << ", ";
-    cout << (d1.get("first2") == 15) << ", ";
-    cout << (d1.get("a") == 20) << ", ";
-    cout << (d1.get("aaa") == 21) << ", ";
+    cout << (d.get("first") == 15) << ", ";
+    cout << (d.get("first1") == 16) << ", ";
+    cout << (d.get("first2") == 17) << ", ";
+    cout << (d.get("a") == 20) << ", ";
+    cout << (d.get("aa") == 21) << ", ";
+    cout << (d.get("aaa") == 22) << ", ";
+    cout << (d.get("aaaa") == 23) << ", ";
+    cout << (d.get("aaaaa") == 24) << ", ";
     endTest();
 
     cout << "Remove key 'first'\n";
-    d1.remove("first");
+    d.remove("first");
     cout << "Is there key 'first'?";
     startTest("0");
-    cout << d1.has("first");
+    cout << d.has("first");
     endTest();
 
     cout << "Empty dict\n";
-    d1.remove("first2");
-    d1.remove("a");
-    d1.remove("aaa");
+    d.remove("first1");
+    d.remove("first2");
+    d.remove("a");
+    d.remove("aa");
+    d.remove("aaa");
+    d.remove("aaaa");
+    d.remove("aaaaa");
     cout << "Is dict empty?";
     startTest("1");
-    cout << d1.isEmpty();
+    cout << d.isEmpty();
     endTest();
     
     cout << "End";

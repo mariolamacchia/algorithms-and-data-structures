@@ -81,10 +81,13 @@ void Dictionary<T, maxLength>::set(string key, T value)
         c = table[h].getNext(c);
     }
     if (table[h].read(c).getKey() == key) table[h].read(c).setValue(value);
-    Bucket<T> b;
-    b.setKey(key);
-    b.setValue(value);
-    table[h].insert(c, b);
+    else
+    {
+        Bucket<T> b;
+        b.setKey(key);
+        b.setValue(value);
+        table[h].insert(c, b);
+    }
 }
 
 template <class T, int maxLength>

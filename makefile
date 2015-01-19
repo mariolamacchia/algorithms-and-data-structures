@@ -74,6 +74,18 @@ dict1:
 	rm list/list.h
 	rm dict/dict.h
 
+dict2:
+	cp dict/dict2.h dict/dict.h
+	$(CC) $(CFLAGS) -o dict2.bin $(FILES) dict/main.cpp dict/hash.cpp \
+	    dict/selection.cpp
+	rm dict/dict.h
+
+dict3:
+	cp dict/dict3.h dict/dict.h
+	$(CC) $(CFLAGS) -o dict3.bin $(FILES) dict/main.cpp dict/hash.cpp \
+	    dict/selection.cpp
+	rm dict/dict.h
+
 clean:
 	rm *.bin
 	rm -rf *.dSYM

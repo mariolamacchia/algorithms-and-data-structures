@@ -125,3 +125,25 @@ List<T>* mergeOrderedLists(List<T>* l1, List<T>* l2)
     }
     return l;
 }
+
+template <class T>
+void removeDuplicates(List<T>* l)
+{
+    typename List<T>::cell c1, c2, c3;
+    c1 = l->getFirst();
+    while (!l->eol(c1))
+    {
+        c2 = l->getNext(c1);
+        while (!l->eol(c2))
+        {
+            if (l->read(c1) == l->read(c2))
+            {
+                c3 = l->getPrevious(c2);
+                l->remove(c2);
+                c2 = l->getNext(c3);
+            }
+            else c2 = l->getNext(c2);
+        }
+        c1 = l->getNext(c1);
+    }
+}

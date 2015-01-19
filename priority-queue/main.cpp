@@ -1,5 +1,6 @@
 #include <iostream>
 #include "priority-queue.h"
+#include "algorithms.h"
 #include "../tests.h"
 
 using namespace std;
@@ -33,6 +34,15 @@ int main()
     startTest("[2, 3, 5, 9, 10, ]");
     cout << "[";
     while (!p->isEmpty()) cout << p->pull() << ", ";
+    cout << "]";
+    endTest();
+
+    cout << "Heap sort of [1, 3, 2, 9, 8]";
+    startTest("[1, 2, 3, 8, 9, ]");
+    int a[] = {1, 3, 2, 9, 8};
+    heapSort(a, 5);
+    cout << "[";
+    for (int i = 0; i < 5; i++) cout << a[i] << ", ";
     cout << "]";
     endTest();
     

@@ -1,7 +1,7 @@
 #ifndef _NODE_INFO
 #define _NODE_INFO
 
-#include "arcinfo.h"
+#include "arcinfo1.h"
 
 template <class T, class W>
 class NodeInfo

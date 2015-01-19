@@ -2,7 +2,7 @@
 #define _GRAPH_H
 
 #include "node.h"
-#include "nodeinfo.h"
+#include "nodeinfo1.h"
 #include "../list/list.h"
 
 template <class T, class W>

@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    typedef typename Graph<char, int>::node Node;
+    typedef Node<char> Node;
 
     cout << "Create empty graph\n";
     Graph<char, int> g;
@@ -47,38 +47,38 @@ int main()
     g.insertArc(nA, nC, 1);
     g.insertArc(nB, nA, 3);
 
-    List<Node> * l;
+    List<Node> l;
     List<Node>::cell c;
     cout << "Print A's adjacents:";
     startTest("B, C,");
     l = g.getAdjacents(nA);
-    c = l->getFirst();
-    while (!l->eol(c))
+    c = l.getFirst();
+    while (!l.eol(c))
     {
-        cout << g.getValue(l->read(c)) << ", ";
-        c = l->getNext(c);
+        cout << g.getValue(l.read(c)) << ", ";
+        c = l.getNext(c);
     }
     endTest();
 
     cout << "Print B's adjacents:";
     startTest("A, ");
     l = g.getAdjacents(nB);
-    c = l->getFirst();
-    while (!l->eol(c))
+    c = l.getFirst();
+    while (!l.eol(c))
     {
-        cout << g.getValue(l->read(c)) << ", ";
-        c = l->getNext(c);
+        cout << g.getValue(l.read(c)) << ", ";
+        c = l.getNext(c);
     }
     endTest();
 
     cout << "Print C's adjacents:";
     startTest("");
     l = g.getAdjacents(nC);
-    c = l->getFirst();
-    while (!l->eol(c))
+    c = l.getFirst();
+    while (!l.eol(c))
     {
-        cout << g.getValue(l->read(c)) << ", ";
-        c = l->getNext(c);
+        cout << g.getValue(l.read(c)) << ", ";
+        c = l.getNext(c);
     }
     endTest();
 

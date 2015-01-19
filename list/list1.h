@@ -14,6 +14,8 @@ class List
         List();
         List(const List&);
         ~List();
+        
+        void operator=(const List& l) {pivot = l.pivot;};
 
         void createList();
 
@@ -56,10 +58,6 @@ List<T>::List(const List & l)
 template <class T>
 List<T>::~List()
 {
-    while (!isEmpty())
-    {
-        remove(getFirst());
-    }
     delete pivot;
 }
 

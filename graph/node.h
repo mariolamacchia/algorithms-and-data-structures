@@ -5,12 +5,14 @@ template <class T>
 class Node
 {
     public:
-        Node() {}
-        Node(T v) { value = v; };
+        Node() {id = -1;};
+        Node(T v) { value = v; id = -1; };
         T getValue() { return value; };
         void setValue(T v) { value = v; };
-
         bool operator==(Node n) { return n.getValue() == value; };
+
+        // Needed for matrix graph
+        int id;
     private:
         T value;
 };

@@ -70,7 +70,6 @@ void List<T>::createList()
     pivot = new Cell<T>;
     pivot->setNext(pivot);
     pivot->setPrevious(pivot);
-    pivot->setValue(INT_MAX);
 }
 
 

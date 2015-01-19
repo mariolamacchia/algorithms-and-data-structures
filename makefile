@@ -67,6 +67,13 @@ priority2:
 	rm priority-queue/priority-queue.h
 	rm binary-tree/binary-tree.h
 
+dict1:
+	cp list/list1.h list/list.h
+	cp dict/dict1.h dict/dict.h
+	$(CC) $(CFLAGS) -o dict1.bin $(FILES) dict/main.cpp dict/hash.cpp
+	rm list/list.h
+	rm dict/dict.h
+
 clean:
 	rm *.bin
 	rm -rf *.dSYM

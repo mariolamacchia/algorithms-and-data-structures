@@ -86,6 +86,20 @@ dict3:
 	    dict/selection.cpp
 	rm dict/dict.h
 
+graph1:
+	cp list/list1.h list/list.h
+	cp graph/graph1.h graph/graph.h
+	$(CC) $(CFLAGS) -o graph1.bin $(FILES) graph/main.cpp
+	rm graph/graph.h
+	rm list/list.h
+
+graph2:
+	cp list/list1.h list/list.h
+	cp graph/graph2.h graph/graph.h
+	$(CC) $(CFLAGS) -o graph2.bin $(FILES) graph/main.cpp
+	rm graph/graph.h
+	rm list/list.h
+
 clean:
 	rm *.bin
 	rm -rf *.dSYM
